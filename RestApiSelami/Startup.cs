@@ -47,7 +47,7 @@ namespace RestApiSelami
 
             app.UseRouting();
 
-            app.UseCors("AllowMyOrigin");
+            app.UseCors("https://lieuxtoapi.herokuapp.com/");
 
             app.UseAuthorization();
 

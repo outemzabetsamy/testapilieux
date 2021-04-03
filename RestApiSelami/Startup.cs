@@ -31,7 +31,7 @@ namespace RestApiSelami
             services.AddControllers();
             services.AddDbContextPool<LieuxContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LieuxContextConnectionString")));
             services.AddScoped<ILieuxData, SqlLieuxData>();
-            services.AddCors(options => { options.AddPolicy("Policy11", builder => builder.WithOrigins("https://lieuxtoapi.herokuapp.com")); });
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,12 +42,12 @@ namespace RestApiSelami
                 app.UseDeveloperExceptionPage();
             }
             dataContext.Database.Migrate();
-
+               app.UseCors( options =>options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseCors("https://lieuxtoapi.herokuapp.com");
+            
 
             app.UseAuthorization();
 

@@ -53,7 +53,7 @@ namespace RestApiSelami
                 app.UseDeveloperExceptionPage();
             }
             dataContext.Database.Migrate();
-               app.UseCors( options =>options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+             
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

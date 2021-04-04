@@ -31,6 +31,8 @@ namespace RestApiSelami
             services.AddControllers();
             services.AddDbContextPool<LieuxContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LieuxContextConnectionString")));
             services.AddScoped<ILieuxData, SqlLieuxData>();
+            services.AddCors();
+            services.AddMvc();
            
         }
 
@@ -44,6 +46,7 @@ namespace RestApiSelami
             dataContext.Database.Migrate();
                app.UseCors( options =>options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseHttpsRedirection();
+            app.useMvc();
 
             app.UseRouting();
 

@@ -46,7 +46,7 @@ namespace RestApiSelami
             dataContext.Database.Migrate();
                app.UseCors( options =>options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseHttpsRedirection();
-            app.useMvc();
+            app.UseMvc();
 
             app.UseRouting();
 

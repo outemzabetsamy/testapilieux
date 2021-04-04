@@ -28,11 +28,12 @@ namespace RestApiSelami
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers();
             services.AddDbContextPool<LieuxContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LieuxContextConnectionString")));
             services.AddScoped<ILieuxData, SqlLieuxData>();
-            services.AddCors();
-            services.AddMvc();
+            
+            services.AddControllersWithViews();
            
         }
 
@@ -46,7 +47,7 @@ namespace RestApiSelami
             dataContext.Database.Migrate();
                app.UseCors( options =>options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseStaticFiles();
 
             app.UseRouting();
 
